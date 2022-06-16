@@ -105,20 +105,20 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
-           function searchByName(parameter) {
-               var txtSearch = parameter.value;
-               $.ajax({
-                   url: "/ProjectShoes/searchajax",
-                   type: "get",
-                   data: {
-                       txt: txtSearch
-                   },
-                   success: function (data) {
-                       var row = document.getElementById("content");
-                       row.innerHTML = data;
-                   }
-               })
-           }
+        //    function searchByName(parameter) {
+        //        var txtSearch = parameter.value;
+        //        $.ajax({
+        //            url: "/ProjectShoes/searchajax",
+        //            type: "get",
+        //            data: {
+        //                txt: txtSearch
+        //            },
+        //            success: function (data) {
+        //                var row = document.getElementById("content");
+        //                row.innerHTML = data;
+        //            }
+        //        })
+        //    }
 
 //             hàm loadmore sử dụng ajax để tải lần lượt sản phẩm lên
             function loadMore() {
@@ -137,23 +137,19 @@
                 })
             }
 
-            // function searchByName(parameter) {
-            //     var txtSearch = parameter.value;
-            //     fetch('/ProjectShoes/searchajax', {
-            //         method: "GET",
-            //         data: {
-            //             txt: txtSearch
-            //         }
-            //     })
-            //     .then(res => {
-            //         console.log(res.json());
-            //         return res.json()
-            //     })
-            //     .then(data => {
-            //         var row = document.getElementById("content");
-            //         row.innerHTML = data;
-            //     })
-            // }
+            // sử dụng fetch
+
+            function searchByName(parameter) {
+                var txtSearch = parameter.value;
+                fetch('searchajax?txt=' + txtSearch)
+                .then(res => {
+                    return res.text();
+                })
+                .then(data => {
+                    var row = document.getElementById("content");
+                    row.innerHTML = data;
+                })
+            }
         </script>
     </body>
 </html>
